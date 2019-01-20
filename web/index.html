@@ -2,7 +2,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="style.css"/>
 <title>Application Form</title>
 </head>
 <body>
@@ -74,7 +73,9 @@
               <td><b>Marks Obtained</b></td>
               <td><b>Percentage/CGPA</b></td>
           </th>  
-          
+          <tr>
+              
+          </tr>
         </table>
         </div>
         <div class="container">
@@ -88,6 +89,21 @@
             <hr>
             <label for="Ifsc"><b>IFSC Code</b></label>
             <input type="text" name="Ifsc" required>
+        </div>
+        <div>
+            <h2>Upload required documents</h2>
+            <hr>
+            <label for="photo"><b>Candidate Photo</b></label>
+            <input type="file" name="photo" accept="image/jpeg">
+            <hr>
+            <label for="signature"><b>Candidate Signature</b></label>
+            <input type="file" name="signature" accept="image/jpeg">
+            <hr>
+            <label for="identity"><b>Candidate Photo Identity</b></label>
+            <input type="file" name="identity" accept="image/jpeg">
+            <hr>
+            <label for="marksheet10"><b>Class 10 Marksheet</b></label>
+            <input type="file" name="marksheet10" accept="application/pdf">
         </div>
         <hr>
         <input type="submit">
