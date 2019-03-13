@@ -1,0 +1,188 @@
+package javaFiles;
+
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.Collections;
+import org.web3j.abi.TypeReference;
+import org.web3j.abi.datatypes.Address;
+import org.web3j.abi.datatypes.Function;
+import org.web3j.abi.datatypes.Type;
+import org.web3j.abi.datatypes.generated.Uint256;
+import org.web3j.crypto.Credentials;
+import org.web3j.protocol.Web3j;
+import org.web3j.protocol.core.RemoteCall;
+import org.web3j.protocol.core.methods.response.TransactionReceipt;
+import org.web3j.tx.Contract;
+import org.web3j.tx.TransactionManager;
+import org.web3j.tx.gas.ContractGasProvider;
+
+/**
+ * <p>Auto generated code.
+ * <p><strong>Do not modify!</strong>
+ * <p>Please use the <a href="https://docs.web3j.io/command_line.html">web3j command line tools</a>,
+ * or the org.web3j.codegen.SolidityFunctionWrapperGenerator in the 
+ * <a href="https://github.com/web3j/web3j/tree/master/codegen">codegen module</a> to update.
+ *
+ * <p>Generated with web3j version 4.1.1.
+ */
+
+
+public class CSSS extends Contract {
+    private static final String BINARY = "608060405234801561001057600080fd5b5060048054600160a060020a0319163317905561100f806100326000396000f3fe608060405234801561001057600080fd5b50600436106100b0576000357c0100000000000000000000000000000000000000000000000000000000900480638946d5bb116100835780638946d5bb1461048c578063a0b7ee5e146104a9578063c162d025146104cc578063dc1e8f7514610586578063f37a3321146106be576100b0565b80630708f603146100b55780632c2f8aca146100d457806347f88689146100f95780637d821efc14610231575b600080fd5b6100d2600480360360208110156100cb57600080fd5b50356106e2565b005b6100d2600480360360408110156100ea57600080fd5b5080359060200135151561087c565b6100d26004803603606081101561010f57600080fd5b81019060208101813564010000000081111561012a57600080fd5b82018360208201111561013c57600080fd5b8035906020019184600183028401116401000000008311171561015e57600080fd5b91908080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201919091525092959493602081019350359150506401000000008111156101b157600080fd5b8201836020820111156101c357600080fd5b803590602001918460018302840111640100000000831117156101e557600080fd5b91908080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201919091525092955050509035600160a060020a03169150610a409050565b6100d2600480360361010081101561024857600080fd5b81359160208101359181019060608101604082013564010000000081111561026f57600080fd5b82018360208201111561028157600080fd5b803590602001918460018302840111640100000000831117156102a357600080fd5b91908080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201919091525092959493602081019350359150506401000000008111156102f657600080fd5b82018360208201111561030857600080fd5b8035906020019184600183028401116401000000008311171561032a57600080fd5b91908080601f0160208091040260200160405190810160405280939291908181526020018383808284376000920191909152509295843595909490935060408101925060200135905064010000000081111561038557600080fd5b82018360208201111561039757600080fd5b803590602001918460018302840111640100000000831117156103b957600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600092019190915250929594936020810193503591505064010000000081111561040c57600080fd5b82018360208201111561041e57600080fd5b8035906020019184600183028401116401000000008311171561044057600080fd5b91908080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201919091525092955050509035600160a060020a03169150610b159050565b6100d2600480360360208110156104a257600080fd5b5035610c65565b6100d2600480360360408110156104bf57600080fd5b5080359060200135610d26565b610574600480360360408110156104e257600080fd5b8101906020810181356401000000008111156104fd57600080fd5b82018360208201111561050f57600080fd5b8035906020019184600183028401116401000000008311171561053157600080fd5b91908080601f0160208091040260200160405190810160405280939291908181526020018383808284376000920191909152509295505091359250610de2915050565b60408051918252519081900360200190f35b6100d26004803603606081101561059c57600080fd5b8101906020810181356401000000008111156105b757600080fd5b8201836020820111156105c957600080fd5b803590602001918460018302840111640100000000831117156105eb57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600092019190915250929594936020810193503591505064010000000081111561063e57600080fd5b82018360208201111561065057600080fd5b8035906020019184600183028401116401000000008311171561067257600080fd5b91908080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201919091525092955050509035600160a060020a03169150610e779050565b6106c6610f19565b60408051600160a060020a039092168252519081900360200190f35b600454600160a060020a031633146106f957600080fd5b60008060008381526020019081526020016000209050600060038260070160405180828054600181600116156101000203166002900480156107725780601f10610750576101008083540402835291820191610772565b820191906000526020600020905b81548152906001019060200180831161075e575b50509283525050604080516020928190038301812060008087556001870181905560028701558183019092526007808252600080516020610fc4833981519152939091019283529092506107ca916003850191610f28565b50604080518082019091526007808252600080516020610fc483398151915260209092019182526107ff916004850191610f28565b506000600583018190556006830155604080518082019091526007808252600080516020610fc483398151915260209092019182526108419181850191610f28565b50604080518082019091526007808252600080516020610fc48339815191526020909201918252610876916001840191610f28565b50505050565b8160008060008381526020019081526020016000206007019050600060038260405180828054600181600116156101000203166002900480156108f65780601f106108d45761010080835404028352918201916108f6565b820191906000526020600020905b8154815290600101906020018083116108e2575b505091505090815260200160405180910390206001019050600181604051808280546001816001161561010002031660029004801561096c5780601f1061094a57610100808354040283529182019161096c565b820191906000526020600020905b815481529060010190602001808311610958575b505092835250506040519081900360200190206002015433600160a060020a039091161461099957600080fd5b60008060008781526020019081526020016000206007019050846003826040518082805460018160011615610100020316600290048015610a115780601f106109ef576101008083540402835291820191610a11565b820191906000526020600020905b8154815290600101906020018083116109fd575b50509283525050604051908190036020019020600301805491151560ff19909216919091179055505050505050565b600454600160a060020a03163314610a5757600080fd5b60006001836040518082805190602001908083835b60208310610a8b5780518252601f199092019160209182019101610a6c565b51815160209384036101000a60001901801990921691161790529201948552506040519384900381019093208751909450610acc9385935088019150610f28565b508251610ae29060018301906020860190610f28565b50600201805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a03929092169190911790555050565b600454600160a060020a03163314610b2c57600080fd5b60008060008a8152602001908152602001600020905060006003846040518082805190602001908083835b60208310610b765780518252601f199092019160209182019101610b57565b51815160209384036101000a60001901801990921691161790529201948552506040519384900381019093208d8655600186018d9055600060028701558b51909450610bcb936003870193508c019150610f28565b508651610be190600484019060208a0190610f28565b5060058201869055600060068301558351610c059060078401906020870190610f28565b5060088201805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0385161790558351610c429082906020870190610f28565b508451610c589060018301906020880190610f28565b5050505050505050505050565b600454600160a060020a03163314610c7c57600080fd5b6000806000838152602001908152602001600020905060006003826007016040518082805460018160011615610100020316600290048015610cf55780601f10610cd3576101008083540402835291820191610cf5565b820191906000526020600020905b815481529060010190602001808311610ce1575b5050928352505060405190819003602001902060029283018054612710908101909155920180549092019091555050565b81600080600083815260200190815260200160002060040190506002816040518082805460018160011615610100020316600290048015610d9e5780601f10610d7c576101008083540402835291820191610d9e565b820191906000526020600020905b815481529060010190602001808311610d8a575b505092835250506040519081900360200190206002015433600160a060020a0390911614610dcb57600080fd5b505060009182526020829052604090912060060155565b6000818152602081905260408120600801548290600160a060020a0316338114610e0b57600080fd5b6003856040518082805190602001908083835b60208310610e3d5780518252601f199092019160209182019101610e1e565b51815160209384036101000a6000190180199092169116179052920194855250604051938490030190922060020154979650505050505050565b600454600160a060020a03163314610e8e57600080fd5b60006002836040518082805190602001908083835b60208310610ec25780518252601f199092019160209182019101610ea3565b51815160209384036101000a60001901801990921691161790529201948552506040519384900381019093208651909450610f069360018601935087019150610f28565b508351610ae29082906020870190610f28565b600454600160a060020a031681565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f10610f6957805160ff1916838001178555610f96565b82800160010185558215610f96579182015b82811115610f96578251825591602001919060010190610f7b565b50610fa2929150610fa6565b5090565b610fc091905b80821115610fa25760008155600101610fac565b9056fe696e76616c696400000000000000000000000000000000000000000000000000a165627a7a72305820b9a289458477cf14cda0457e92de6dd8d2bbc782774ed225390bca6ad10b0de80029";
+
+    public static final String FUNC_REMOVESTUDENTFROMBLOCKCHAIN = "removeStudentFromBlockchain";
+
+    public static final String FUNC_UPDATEBANKSTATUS = "updateBankStatus";
+
+    public static final String FUNC_ADDBANK = "addBank";
+
+    public static final String FUNC_ADDSTUDENTTOBLOCKCHAIN = "addStudentToBlockchain";
+
+    public static final String FUNC_DISPENSE = "dispense";
+
+    public static final String FUNC_UPDATEATTENDENCE = "updateAttendence";
+
+    public static final String FUNC_GETACCOUNTBALANCE = "getAccountBalance";
+
+    public static final String FUNC_ADDCOLLEGE = "addCollege";
+
+    public static final String FUNC_CBSE = "CBSE";
+
+    @Deprecated
+    protected CSSS(String contractAddress, Web3j web3j, Credentials credentials, BigInteger gasPrice, BigInteger gasLimit) {
+        super(BINARY, contractAddress, web3j, credentials, gasPrice, gasLimit);
+    }
+
+    protected CSSS(String contractAddress, Web3j web3j, Credentials credentials, ContractGasProvider contractGasProvider) {
+        super(BINARY, contractAddress, web3j, credentials, contractGasProvider);
+    }
+
+    @Deprecated
+    protected CSSS(String contractAddress, Web3j web3j, TransactionManager transactionManager, BigInteger gasPrice, BigInteger gasLimit) {
+        super(BINARY, contractAddress, web3j, transactionManager, gasPrice, gasLimit);
+    }
+
+    protected CSSS(String contractAddress, Web3j web3j, TransactionManager transactionManager, ContractGasProvider contractGasProvider) {
+        super(BINARY, contractAddress, web3j, transactionManager, contractGasProvider);
+    }
+
+    public RemoteCall<TransactionReceipt> removeStudentFromBlockchain(BigInteger _CSSSRegNumber) {
+        final Function function = new Function(
+                FUNC_REMOVESTUDENTFROMBLOCKCHAIN, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.generated.Uint256(_CSSSRegNumber)), 
+                Collections.<TypeReference<?>>emptyList());
+        return executeRemoteCallTransaction(function);
+    }
+
+    public RemoteCall<TransactionReceipt> updateBankStatus(BigInteger _CSSSRegNumber, Boolean _activeStatus) {
+        final Function function = new Function(
+                FUNC_UPDATEBANKSTATUS, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.generated.Uint256(_CSSSRegNumber), 
+                new org.web3j.abi.datatypes.Bool(_activeStatus)), 
+                Collections.<TypeReference<?>>emptyList());
+        return executeRemoteCallTransaction(function);
+    }
+
+    public RemoteCall<TransactionReceipt> addBank(String _bankName, String _bankIFSC, String _bankAddress) {
+        final Function function = new Function(
+                FUNC_ADDBANK, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(_bankName), 
+                new org.web3j.abi.datatypes.Utf8String(_bankIFSC), 
+                new org.web3j.abi.datatypes.Address(_bankAddress)), 
+                Collections.<TypeReference<?>>emptyList());
+        return executeRemoteCallTransaction(function);
+    }
+
+    public RemoteCall<TransactionReceipt> addStudentToBlockchain(BigInteger _CSSSRegNumber, BigInteger _regYear, String _name, String _collegeID, BigInteger _marksCollege, String _bankIFSC, String _bankAccountNumber, String _studentAddress) {
+        final Function function = new Function(
+                FUNC_ADDSTUDENTTOBLOCKCHAIN, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.generated.Uint256(_CSSSRegNumber), 
+                new org.web3j.abi.datatypes.generated.Uint256(_regYear), 
+                new org.web3j.abi.datatypes.Utf8String(_name), 
+                new org.web3j.abi.datatypes.Utf8String(_collegeID), 
+                new org.web3j.abi.datatypes.generated.Uint256(_marksCollege), 
+                new org.web3j.abi.datatypes.Utf8String(_bankIFSC), 
+                new org.web3j.abi.datatypes.Utf8String(_bankAccountNumber), 
+                new org.web3j.abi.datatypes.Address(_studentAddress)), 
+                Collections.<TypeReference<?>>emptyList());
+        return executeRemoteCallTransaction(function);
+    }
+
+    public RemoteCall<TransactionReceipt> dispense(BigInteger _CSSSRegNumber) {
+        final Function function = new Function(
+                FUNC_DISPENSE, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.generated.Uint256(_CSSSRegNumber)), 
+                Collections.<TypeReference<?>>emptyList());
+        return executeRemoteCallTransaction(function);
+    }
+
+    public RemoteCall<TransactionReceipt> updateAttendence(BigInteger _CSSSRegNumber, BigInteger _attendence) {
+        final Function function = new Function(
+                FUNC_UPDATEATTENDENCE, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.generated.Uint256(_CSSSRegNumber), 
+                new org.web3j.abi.datatypes.generated.Uint256(_attendence)), 
+                Collections.<TypeReference<?>>emptyList());
+        return executeRemoteCallTransaction(function);
+    }
+
+    public RemoteCall<BigInteger> getAccountBalance(String _bankAccountNumber, BigInteger _CSSSRegNumber) {
+        final Function function = new Function(FUNC_GETACCOUNTBALANCE, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(_bankAccountNumber), 
+                new org.web3j.abi.datatypes.generated.Uint256(_CSSSRegNumber)), 
+                Arrays.<TypeReference<?>>asList(new TypeReference<Uint256>() {}));
+        return executeRemoteCallSingleValueReturn(function, BigInteger.class);
+    }
+
+    public RemoteCall<TransactionReceipt> addCollege(String _collegeName, String _collegeID, String _collegeAddress) {
+        final Function function = new Function(
+                FUNC_ADDCOLLEGE, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.Utf8String(_collegeName), 
+                new org.web3j.abi.datatypes.Utf8String(_collegeID), 
+                new org.web3j.abi.datatypes.Address(_collegeAddress)), 
+                Collections.<TypeReference<?>>emptyList());
+        return executeRemoteCallTransaction(function);
+    }
+
+    public RemoteCall<String> CBSE() {
+        final Function function = new Function(FUNC_CBSE, 
+                Arrays.<Type>asList(), 
+                Arrays.<TypeReference<?>>asList(new TypeReference<Address>() {}));
+        return executeRemoteCallSingleValueReturn(function, String.class);
+    }
+
+    @Deprecated
+    public static CSSS load(String contractAddress, Web3j web3j, Credentials credentials, BigInteger gasPrice, BigInteger gasLimit) {
+        return new CSSS(contractAddress, web3j, credentials, gasPrice, gasLimit);
+    }
+
+    @Deprecated
+    public static CSSS load(String contractAddress, Web3j web3j, TransactionManager transactionManager, BigInteger gasPrice, BigInteger gasLimit) {
+        return new CSSS(contractAddress, web3j, transactionManager, gasPrice, gasLimit);
+    }
+
+    public static CSSS load(String contractAddress, Web3j web3j, Credentials credentials, ContractGasProvider contractGasProvider) {
+        return new CSSS(contractAddress, web3j, credentials, contractGasProvider);
+    }
+
+    public static CSSS load(String contractAddress, Web3j web3j, TransactionManager transactionManager, ContractGasProvider contractGasProvider) {
+        return new CSSS(contractAddress, web3j, transactionManager, contractGasProvider);
+    }
+
+    public static RemoteCall<CSSS> deploy(Web3j web3j, Credentials credentials, ContractGasProvider contractGasProvider) {
+        return deployRemoteCall(CSSS.class, web3j, credentials, contractGasProvider, BINARY, "");
+    }
+
+    public static RemoteCall<CSSS> deploy(Web3j web3j, TransactionManager transactionManager, ContractGasProvider contractGasProvider) {
+        return deployRemoteCall(CSSS.class, web3j, transactionManager, contractGasProvider, BINARY, "");
+    }
+
+    @Deprecated
+    public static RemoteCall<CSSS> deploy(Web3j web3j, Credentials credentials, BigInteger gasPrice, BigInteger gasLimit) {
+        return deployRemoteCall(CSSS.class, web3j, credentials, gasPrice, gasLimit, BINARY, "");
+    }
+
+    @Deprecated
+    public static RemoteCall<CSSS> deploy(Web3j web3j, TransactionManager transactionManager, BigInteger gasPrice, BigInteger gasLimit) {
+        return deployRemoteCall(CSSS.class, web3j, transactionManager, gasPrice, gasLimit, BINARY, "");
+    }
+}
